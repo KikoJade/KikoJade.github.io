@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts/script.js"></script>
     <title>KJ's Portfolio</title>
 </head>
-<body>
-    <h1>KJ Portfolio</h1>
+<body id="mainPage">
+    <h1 id="title">KJ Portfolio</h1>
     <img src="images/IMG_8842.webp" alt="A pic of me in the Prom making a stupid face">
     <p>It's KJ Weidner back at it again, and I don't know what to say about me that I haven't in
         the last three classes I've had here. I still like Pokemon and Dungeons and Dragons, 
@@ -19,5 +20,11 @@
     </p>
     <h2>Class Projects</h2>
     <p>Below is a list of incredible projects made by yours truly.</p>
+    <h3>Settings</h3>
+    <div>
+    <button id="dark" onclick="darkMode()">Dark</button>
+    <button id="light" onclick="lightMode()">Light</button>
+    <button id="default" onclick="defaultMode()">Default</button>
+    </div>
 </body>
 </html>
