@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>SAV Calculator</title>
+    <script src="../scripts/math.js"></script>
+</head>
+<body>
+    <h1>How Big Are My Dice?</h1>
+
+    <p>Millions of people across the world use dice to play
+        their tabletop games, but have you ever wondered
+        the exact measurements of yours? Look no further
+        than right here. Just type in your measurements, 
+        and my brilliant calculator shall solve your 
+        conundrum.
+    </p>
+
+    <div>
+        <a href="../index.html">Home</a>
+    </div>
+
+    <hr>
+
+    <p>Before we get to the actual dice, there are some
+        basic shapes that make up these dice, ie triangles
+        and squares. But because I hate myse- am an 
+        overachiever, let's go with what makes up the 
+        D12, Pentagons.
+    </p>
+
+    <img alt="A pentagon">
+
+    <div>
+        <label for="pentlength">Length of one side:</label><input id="pentlength" type="text">
+        <button onclick="pentAP()">Submit</button>
+    </div>    
+    <p>Perimeter: <span id="pentPerimeter"></span></p>
+    <p>Area: <span id="pentArea"></span></p>
+    
+        
+    <hr>
+
+    <h2>D4</h2>
+
+    <img alt="A d4">
+
+    <p>Also known as a tetrahedron, used for little damage
+        like daggers or Vicious Mockery, you nerd.
+    </p>
+
+    <p>TBD</p>
+
+    <h2>D6</h2>
+
+    <p>TBD</p>
+
+    <h2>D8</h2>
+
+    <p>TBD</p>
+
+    <h2>D10</h2>
+    
+    <p>TBD</p>
+
+    <h2>D12</h2>
+
+    <img alt="A d12">
+
+    <p>These guys are called dodecahedrons and are 
+        used for heavy hitting spells, weapons and... 
+        honestly, not much else. Barbarians' best friends.
+    </p>
+
+    <div>
+        <label for="d12length">Length of one side:</label><input id="d12length" type="text">
+        <button onclick="d12Volume()">Submit</button>
+    </div>
+    <p>Volume: <span id="d12V"></span></p>
+
+    <h2>D20</h2>
+
+    <p>TBD</p>
+
+</body>
+</html>
