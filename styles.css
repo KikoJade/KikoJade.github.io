@@ -28,10 +28,24 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 200px;
+    height: 300px;
 }
 
 div {
     margin-left: 10%;
     margin-right: 10%;
+}
+
+#prompic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+}
+
+#theyhitthepentagon {
+    height: auto;
+    width: auto;
 }
