@@ -1,0 +1,16 @@
+body {
+    background-color: #d9b6fa;
+}
+
+button {
+    background-color: #DDCCFF;
+    height: 50px;
+    width: 50px;
+}
+
+#reset {
+    height: auto;
+    width: auto;
+    background-color: rosybrown;
+    color: white;
+}
