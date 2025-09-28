@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mean Calculator</title>
+    <script src="../scripts/arithmetic.js"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <h1>Data Entry</h1>
+    <div>
+    <a href="../index.html">Home</a>
+    </div>
+    <hr>
+
+    <div>
+    <label for="numEntry">Enter a number: </label>
+    <input id="numEntry" type="text">
+    <button id="addButton" onclick="addValue()">Add Value</button>
+    <button id="subButton" onclick="removeValue()">Remove Value</button>
+    </div>
+
+    <h2>Current Dataset</h2>
+    <p id="arrayDisplay"></p>
+
+    <h2>Current Mean</h2>
+    <p id="meanDisplay"></p>
+</body>
+</html>
