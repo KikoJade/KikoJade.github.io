@@ -41,27 +41,32 @@
                 pairs.push(i);
                 pairs.push(i);
             }
-            return pairs;
-        };
 
-        const shuffle = (array) => {
-            for(let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                let temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-            return array;
-        };
-
-        const buildGrid = (rows, cols, array) => {
-            for(i = 0; i < rows; i++) {
-                map[i] = [];
-                for(j = 0; j < cols; j++) {
-                    map[i][j] = array.pop();
+            const shuffle = (array) => {
+                for(let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    let temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
                 }
-            }
+                return array;
+            };
+
+            shuffle(pairs);
+
+            const buildGrid = (rows, cols, array) => {
+                for(i = 0; i < rows; i++) {
+                    map[i] = [];
+                    for(j = 0; j < cols; j++) {
+                        map[i][j] = array.pop();
+                    }
+                }
+            };
+
+            buildGrid(rows, cols, pairs);
         };
+
+        
 
         const makeBoard = (rows, cols) => {
             let output = '<table>';
@@ -80,7 +85,7 @@
         };
 
         const resetGame = (row, col) => {
-            buildGrid(row, col, shuffle(loadmap(row, col)));
+            loadmap(row, col);
             makeBoard(row, col);
         };
 
