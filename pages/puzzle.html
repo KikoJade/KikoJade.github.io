@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Puzzle</title>
+    <style>
+        /* NOTE: Do NOT modify this spreadsheet */
+        #puzzle {
+            width: 500px;
+            height: 500px;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- NOTE: Do NOT modify the body or div-->
+     <div id="puzzle"></div>
+
+     <script>
+        // All puzzle code must be implemented here.
+
+        const puzzle = document.getElementById('puzzle');
+        puzzle.style.backgroundColor = '#7338A0';
+
+        const header = document.createElement('h1');
+        header.innerText = 'DOM Puzzle';
+        document.body.insertBefore(header, document.body.firstChild);
+
+        const bigButtonDiv = document.createElement('div')
+            bigButtonDiv.style = 'width: 250px; height: 250px;';
+            puzzle.appendChild(bigButtonDiv);
+
+        function createBigButtons(label, color) {
+            let button = document.createElement('button');
+            button.style = 'width: 125px; height: 125px; color: white;';
+            button.innerText = label;
+            button.style.backgroundColor = color;
+            bigButtonDiv.appendChild(button);
+        };
+
+        createBigButtons('A', '#9455F4');
+        createBigButtons('B', '#4A2B74');
+        createBigButtons('C', '#594492');
+        createBigButtons('D', '#854DDC');
+
+        const littleButtonDiv = document.createElement('div');
+        littleButtonDiv.style = 'float: right; height: 250px; width: 250px;';
+        puzzle.appendChild(littleButtonDiv);
+
+        for (let i = 0; i < 100; i++) {
+            const littleButton = document.createElement('button');
+            littleButton.style = 'height: 24px; width: 25px; background-color: #C39CFE;'
+            littleButton.classList.add('littleButton');
+            littleButtonDiv.appendChild(littleButton);
+        }
+
+        let paragraph = document.createElement('p');
+        paragraph.innerText = 'This is a puzzle created entirely in JavaScript.';
+        document.body.appendChild(paragraph);
+
+        let link = document.createElement('a');
+        link.innerText = 'Home';
+        link.setAttribute('href', '../index.html');
+        document.body.appendChild(link);
+
+
+        puzzle.addEventListener('mouseenter', () => {
+            puzzle.style.border = '5px solid orange';
+        });
+
+        puzzle.addEventListener('mouseleave', () => {
+            puzzle.style.border = '5px solid black';
+        });
+
+        puzzle.addEventListener('click', (event) => {
+            if (event.target.classList.contains('littleButton')) {
+                event.target.style.backgroundColor = '#4A2574';
+                event.target.previousElementSibling.style.backgroundColor = 'orange';
+                event.target.nextElementSibling.style.backgroundColor = 'orange';
+            }
+        });
+     </script>
+</body>
+</html>
