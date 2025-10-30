@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        p {
+          margin-left:auto;  
+        }
+    </style>
+    <title>How am I Doing?</title>
+</head>
+<body>
+    <h1>How am I Doing?</h1>
+    <a href="../index.html">Home</a>
+    <hr>
+
+    <form id="form" method="post">
+        <label for="name">Name:</label>
+        <input id="name"
+                type="text"
+                pattern="[A-Za-z ]+$"
+                title="Name cannot contain numbers or special characters."
+                name="name"
+                required>
+        <br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input id="phone"
+                type="tel"
+                placeholder="###-###-####"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                title="Yes, the hyphens are required."
+                name="phone">
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input id="email"
+                type="email"
+                autocomplete="email"
+                name="email">
+        <br><br>
+
+        <label for="comment">Comment:</label>
+        <textarea id="comment"
+                    name="comment"></textarea>
+        <br><br>
+
+        <label for="username">Username:</label>
+        <input id="username"
+                type="text"
+                name="username">
+        <br>
+        <p id="userInfo"></p>
+        <br>
+
+        <label for="password">Password</label>
+        <input id="password"
+                type="password"
+                name="password"
+                minlength="8">
+        <br>
+        <p id="passInfo"></p>
+        <br>
+
+        <button type="submit" id="submit">Submit</button>
+    </form>
+
+    <script>
+        let username = document.getElementById('username');
+        let password = document.getElementById('password');
+        let form = document.getElementById('form');
+        let data = [];
+
+        username.addEventListener("input", function(event) {
+            let username = this.value;
+            let message = document.getElementById('userInfo');
+            const violatedRules = [];
+
+            let hasSpecial = /[!@#$%^&*(){}]/.test(username);
+            if (hasSpecial)
+                violatedRules.push('No special characters other than _ allowed.');
+            let hasSpace = /[ ]/.test(username);
+            if (hasSpace)
+                violatedRules.push('No spaces allowed.');
+            if (!hasSpecial && !hasSpace)
+                violatedRules.push('Your username follows all the rules :)');
+            message.innerHTML = violatedRules;
+        });
+
+        password.addEventListener("input", function(event) {
+            let password = this.value;
+            let message = document.getElementById('passInfo');
+            const missing = [];
+
+            if (password.length < 8)
+                missing.push(' 8 character minimum');
+            let hasLower = /[a-z]/.test(password);
+            if (!hasLower)
+                missing.push(' lower-case letter');
+            let hasUpper = /[A-Z]/.test(password);
+            if (!hasUpper)
+                missing.push(' upper-case letter');
+            let hasNumber = /[0-9]/.test(password);
+            if (!hasNumber)
+                missing.push(' number');
+            let hasSpecial = /[!@#$%^&*()]/.test(password);
+            if (!hasSpecial)
+                missing.push(' special character');
+            if (password.length >= 8 && hasLower && hasUpper && hasNumber && hasSpecial)
+                missing.push(" Nothing! That's a great password :)");
+
+            message.innerHTML = 'You are missing:' + missing;
+        });
+
+        form.addEventListener('submit', function(event) {
+            data = [];
+            let inputs = document.getElementsByTagName('input');
+            event.preventDefault();
+            for (let i = 0; i < 5; i++) {
+                inputs[i].value = sanitize(inputs[i].value);
+                console.log(inputs[i].value);
+                data.push(inputs[i].value);
+            }
+            document.getElementById('comment').value = sanitize(document.getElementById('comment').value);
+            console.log(document.getElementById('comment').value);
+            // Comment is saved on the bottom since it's not an input field
+            data.push(document.getElementById('comment').value);
+            console.log(data);
+            for (input of inputs)
+                input.value = '';
+            document.getElementById('comment').value = '';
+            document.getElementById('userInfo').innerHTML = '';
+            document.getElementById('passInfo').innerHTML = '';
+        })
+
+        const sanitize = (text) => {
+            // I'd make a second function, but each case returns a different character code anyway
+            if (text.includes('<'))
+                text = text.replaceAll('<', '&lt;');
+            if (text.includes('>'))
+                text = text.replaceAll('>', '&gt;');
+            if (text.includes('&'))
+                text = text.replaceAll('&', '&amp;');
+            if (text.includes('"'))
+                text = text.replaceAll('"', '&quot;');
+            if (text.includes("'"))
+                text = text.replaceAll("'", '&apos;');
+
+            return text;
+        };
+
+
+    </script>
+</body>
+</html>
