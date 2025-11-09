@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Am I Doing?</title>
+</head>
+<body>
+    <h1>What Am I Doing?</h1>
+    <a id="link" href="../index.html">Home</a>
+    <hr>
+
+    <p>A place for you to write down what you're up to so you don't forget!</p>
+
+    <label>Light/Dark Mode</label>
+    <button id="settingsButton" onclick="swap(1)">Dark Mode</button>
+    <br><br>
+
+    <form id="addItem">
+        <label for="newItem">New Item:</label>
+        <input id="newItem" type="text">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <p>Number of items added this session: <span id="countSpan"></span></p>
+
+    <h2>Task List</h2>
+    <ol id="itemList"></ol>
+
+    <input type="number" id="itemNum">
+    <button onclick="removeNum()">Remove By Number</button> <br><br>
+    <button onclick="removeAll()">Remove All</button>
+
+    <script>
+        let date = new Date();
+        date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+
+        const loadSettings = () => {
+            let mode = getCookie('mode');
+            mode = mode ? mode : 'light';
+            if (mode = 'dark') {
+                swap(1);
+            }
+
+            let toDoList = localStorage.getItem('toDoList');
+            let toDoItems = JSON.parse(toDoList);
+            console.log(toDoItems);
+            if (toDoItems) {
+                for (let i = 0; i < toDoItems.length; i++) {
+                    let list = document.createElement('li');            
+                    let item = toDoItems[i];
+                    list.textContent = item;
+                    console.log(item);
+                    document.getElementById('itemList').appendChild(list);
+                }
+            }
+        else {
+                let list = document.createElement('li');
+                list.textContent = "All done!";
+                document.getElementById('itemList').appendChild(list);
+            }
+        count = sessionStorage.getItem('changeCount');
+        count = count ? count : 0;
+        document.getElementById('countSpan').innerText = count;
+    }
+        const swap = (mode) => {
+            if (mode === 1) {
+                document.body.style.backgroundColor = '#444444';
+                document.body.style.color = '#EEEEEE';
+                document.getElementById('settingsButton').textContent = 'Light Mode';
+                document.getElementById('settingsButton').setAttribute('onclick', 'swap(0)'); 
+                document.getElementById('link').style.color = 'yellow';
+                if (document.cookie) {
+                    document.cookie = 'mode=; expires=Thu, Jan 01 1970 00:00:00 UTC; path=/'
+                }
+                let expires = "expires=" + date.toUTCString;
+                document.cookie = "mode='dark'; " + expires;
+            }
+            else {
+                document.body.style.backgroundColor = '#FFFFFF';
+                document.body.style.color = '#000000';
+                document.getElementById('settingsButton').textContent = 'Dark Mode';
+                document.getElementById('settingsButton').setAttribute('onclick', 'swap(1)'); 
+                document.getElementById('link').style.color = 'purple';
+                if (document.cookie) {
+                    document.cookie = 'mode=; expires=Thu, Jan 01 1970 00:00:00 UTC; path=/'
+                }
+                let expires = "expires=" + date.toUTCString;
+                document.cookie = "mode='light'; " + expires;
+            }
+            console.log(document.cookie);
+        };
+
+        // Copied from the other assignment
+        function getCookie(name) {
+				const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+
+                    if (cookie.startsWith(name + '=')) {
+                        return cookie.substring(name.length + 1);
+                    }
+                }
+                return cookies;
+			}
+
+        document.getElementById('addItem').addEventListener('submit', function(event) {
+            event.preventDefault();
+            addItem();
+        })
+
+        const addItem = () => {
+            item = document.getElementById('newItem').value;
+            let itemList = localStorage.getItem('toDoList');
+            let savedList = [];
+            itemList = itemList ? itemList : '';
+            if (itemList) {
+                let retrievedList = JSON.parse(itemList);
+                console.log(retrievedList);
+                for (let i = 0; i < retrievedList.length; i++) {
+                    savedList.push(retrievedList[i]);
+                }
+            }
+            savedList.push(item);
+            localStorage.setItem('toDoList', JSON.stringify(savedList));
+            addCount();
+            location.reload(true);
+    }
+
+        const removeAll = () => {
+            localStorage.clear();
+            location.reload(true);
+        }
+        
+        const removeNum = () => {
+            num = document.getElementById('itemNum').value;
+            let itemList = localStorage.getItem('toDoList');
+            let items = JSON.parse(itemList);
+            items.splice(num - 1, 1);
+            removeAll();
+            localStorage.setItem('toDoList', JSON.stringify(items));
+            location.reload;
+        }
+
+        const addCount = () => {
+            count = sessionStorage.getItem('changeCount');
+            count = count ? count : 0;
+            count++;
+            sessionStorage.setItem('changeCount', count);
+        }
+
+        loadSettings();
+    </script>
+</body>
+</html>
