@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Cards</title>
+</head>
+<body>
+    <h1>My Bro's Magic Cards</h1>
+    <a href="../index.html">Home</a>
+    <hr>
+
+    <div id="display"></div>
+
+    <script>
+        document.body.style.backgroundColor = 'cadetblue';
+
+        let cards = [{"name": "Eerie Ultimatum", "cost": "2 White, 2 Green, 3 Black", "type": "Sorcery", "image": "../images/eerie.webp"}, 
+                     {"name": "Swamp", "cost": "Free", "type": "Land", "image": "../images/swamp.webp"}, 
+                     {"name": "Gala Greeters", "cost": "1 Green, 1 Colorless", "type": "Creature", "image": "../images/gala.webp"}
+                    ];
+
+        class MagicCard {
+            name;
+            cost;
+            type;
+            #image;
+
+            constructor(object) {
+                this.name = object.name;
+                this.cost = object.cost;
+                this.type = object.type;
+                this.#image = object.image;
+            }
+
+            get image() {
+                return this.#image;
+            }
+
+            set type(type) {
+                const types = ['instant', 'sorcery', 'land', 'creature', 'enchantment', 'planeswalker', 'artifact'];
+                if (types.includes(type.toLowerCase())) {
+                    this.type = type;
+                }
+                else {
+                    throw new Error('Invalid type! Must be ' + types);
+                }
+            }
+
+            toString() {
+                return "Name: " + this.name + "; Cost: " + this.cost + "; Type: " + this.type + '; Image: ' + this.image;
+            }
+
+            display() {
+                let display = document.getElementById('display');
+                let image = document.createElement('img');
+                image.setAttribute('src', this.#image);
+                image.style.width = '20%';
+                image.style.height = '30%';
+                display.appendChild(image);
+                let title = document.createElement('h2');
+                title.textContent = this.name;
+                display.appendChild(title);
+                let cost = document.createElement('p');
+                cost.textContent = "Cost: " + this.cost;
+                display.appendChild(cost);
+                let type = document.createElement('p');
+                type.textContent = "Type: " + this.type;
+                display.appendChild(type);
+                display.appendChild(document.createElement('hr'));
+            }
+        }
+
+        eerie = new MagicCard(cards[0]);
+        swamp = new MagicCard(cards[1]);
+        gala = new MagicCard(cards[2]);
+
+        eerie.display();
+        swamp.display();
+        gala.display();
+        console.log(eerie.toString());
+        
+    </script>
+</body>
+</html>
