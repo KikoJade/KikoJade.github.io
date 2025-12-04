@@ -52,8 +52,7 @@ player.src = '../images/Untitled21_20250218212022.png';
 let playerX = 0;
 let playerY = 60;
 player.onload = function() {
-    ctx.drawImage(player, playerX, playerY, 20, 20);
-    drawTrees();
+    drawMap();
 }
 
 // Player movement
