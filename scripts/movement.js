@@ -26,6 +26,26 @@ for (let i = 0; i < treeSpots.length; i++) {
     trees.push(treeMaker(treeSpots[i]));
 }
 
+// Enemy Generation
+let enemyId = 1;
+
+const despawnEnemy = () => {
+    enemyId = 0;
+    op = enemyMaker();
+    ctx.drawImage(player, playerX, playerY, 20, 20);
+    drawTrees();
+};
+
+const enemyMaker = () => {
+    const enemy = new Image;
+    let enemyX = (Math.floor(Math.random() * 12) + 2) * 20;
+    let enemyY = (Math.floor(Math.random() * 4) + 2) * 20;
+    let enemyObj = {enemy: enemy, x: enemyX, y: enemyY};
+    enemy.src = '../images/skull.png';
+    return enemyObj;
+}
+op = enemyMaker();
+
 // Player generation
 const player = new Image();
 player.src = '../images/Untitled21_20250218212022.png';
@@ -33,7 +53,7 @@ let playerX = 0;
 let playerY = 60;
 player.onload = function() {
     ctx.drawImage(player, playerX, playerY, 20, 20);
-    drawTrees()
+    drawTrees();
 }
 
 // Player movement
@@ -60,18 +80,36 @@ document.addEventListener('keydown', (event) => {
 
     // 'New' area
     // Going up
-    if (playerX < 240 && playerX > 150 && playerY <= 0)
+    if (playerX < 240 && playerX > 150 && playerY <= 0) {
         playerY = screen.height - 20;
-    // Going down (works)
-    else if (playerX < 240 && playerX > 150 && playerY == screen.height - 20)
+        despawnEnemy();
+        enemyId++;
+    }
+    // Going down
+    else if (playerX < 240 && playerX > 150 && playerY == screen.height - 20) {
         playerY = 0;
+        despawnEnemy();
+        enemyId++;
+    }
     // Going left
     if (playerX == 0) {
         playerX = screen.width - 20;
+        despawnEnemy();
+        enemyId++;
     }
-    // Going right (works)
-    else if (playerX == screen.width - 20)
+    // Going right
+    else if (playerX == screen.width - 20) {
         playerX = 0;
+        despawnEnemy();
+        enemyId++;
+    }
+    drawMap();
+});
+
+const drawMap = () => {
+    if (enemyId != 0) {
+        ctx.drawImage(op.enemy, op.x, op.y, 20, 20);
+    }
     ctx.drawImage(player, playerX, playerY, 20, 20);
     drawTrees();
-});
+};
