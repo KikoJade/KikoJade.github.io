@@ -1,0 +1,42 @@
+Asssignment Notes and Tasks to Completion 
+* Functional link to webpage and portfolio site * ()
+
+-  Add descriptions to character roles using JS (htmlScript)
+    •   create button click functions for radial buttons
+    •   add image of role characters (optional)
+    •   update page dynamically with role description
+    •   implement local storage functionality of character selection and character name
+    •   add cookies for sign-in to store user details
+
+-   Add methods to character class (characterScript)
+    •    implement attack and defend methods
+    •   continue to expand on character attributes
+    •   
+
+-   Route player selection options to separate page (PHP script)
+    •   save details for use on character map 
+    •   PHP saves user data on the sever in order to keep logic and data secure
+    •   use PHP to store scores, persistent game states, and user 4
+    •   Create a 'data endpoint file' that gets the players data (get_player_data.php)
+    •   use JSON in get_player_data php
+
+- Update the game page HTML
+    •   implement FETCH API to get data from the php endpoint file
+    •   assign variables from PHP to JS objects in order to play game
+    •   create and implement game logic using JS with characterScript
+    •   
+
+- 
+    •   
+    •   
+    •   
+    •   
+    •   
+
+- 
+
+
+
+
+
+
