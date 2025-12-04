@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRPG Project</title>
+</head>
+<!-- Two seperate script files to handle html functionality and to handle game functionality-->
+<script src="htmlScript.js"></script>
+<script src="characterScript.js"></script>
+
+<body>
+    <h1 id="welcomeMessage">Welcome to My RPG Adventure</h1>
+    <p>Game description goes here.</p>
+    
+    <div id="playerCreationContainer">
+
+        <!-- Data is sent to process_page for storage and routing to game page-->
+        <form id="playerCreationForm" name="playerCreation" method="GET" action="myRPGAdventure.html">
+        <h2>Player Creation</h2>
+
+        <label for="playerName">Enter your player name: </label>
+        <input
+        id="playerName"
+        type="text"
+        name="playerName"
+        maxlength="16 characters maximum"
+        pattern="^[a-zA-Z0-9]{1,16}$"
+        title="Player name can only contain letters and cannot be more than 16 characters."
+        reguired
+        ><hr>
+
+        <p id="characterRoles" ><span id="roleDescription">Select your character role: </span> </p>
+        <ul id="characterRoleList">
+            <li><input id="fighterBtn" type="radio" name="roleOption" value="fighter" onclick="characterRoleOptions(this.value)"><label for="fighter">Fighter</label></li>
+            <li><input id="sageBtn" type="radio" name="roleOption" value="sage" onclick="characterRoleOptions(this.value)"><label for="sage">Sage</label></li>
+            <li><input id="knightBtn" type="radio" name="roleOption" value="knight" onclick="characterRoleOptions(this.value)"><label for="knight">Knight</label></li>
+            <li><input id="minstrelBtn" type="radio" name="roleOption" value="minstrel" onclick="characterRoleOptions(this.value)"><label for="minstrel">Minstrel</label></li>
+            <li><input id="mysticBtn" type="radio" name="roleOption" value="mystic" onclick="characterRoleOptions(this.value)"><label for="mystic">Mystic</label></li>
+            <li><input id="witchBtn" type="radio" name="roleOption" value="witch" onclick="characterRoleOptions(this.value)"><label for="witch">Witch</label></li>
+        </ul>
+
+        <button id="submitFormBtn" type="submit" true>Click here to start your adventure!</button>
+    </form>
+
+    </div>
+
+    
+</body>
+</html>
