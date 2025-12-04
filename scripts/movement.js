@@ -32,7 +32,9 @@ let enemyId = 1;
 
 const despawnEnemy = () => {
     enemyId = 0;
-    op = enemyMaker();
+    op1.img = enemyMaker();
+    op2.img = enemyMaker();
+    op3.img = enemyMaker();
     ctx.drawImage(player, playerX, playerY, 20, 20);
     drawTrees();
 };
