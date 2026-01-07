@@ -4,14 +4,17 @@
 export class Player {
     #hp
     #ap
-    #role;
+    #role
+    #img
+    #playerX
+    #playerY
 
     constructor(name, role) {
         this.name= name;
         this.#hp= 100;
-        //this.#ap= 7;
-        this.#ap= playerActionPoints;
-        this.role= role;
+        this.#ap= 7;
+        //this.#ap= playerActionPoints;
+        //this.role = role;
     }
 
 //  Methods to be used for the player character
@@ -22,15 +25,16 @@ export class Player {
     }
 
     defend(enemy) {
-
+        return 1;
     }
 
     flee(enemy) {
-
+        return 1;
     }
 
     function () {
         // TODO: figure out what to do here later
+        return 1;
     }
 
 
@@ -69,6 +73,32 @@ export class Player {
         // if (validRoles.includes(role.toLowerCase())) {
         //     this.#role= role;
         // }
+    }
+
+    get img() {
+        return this.#img;
+    }
+
+    set img(image) {
+        this.#img = image;
+    }
+
+    get playerX() {
+        return this.#playerX;
+    }
+
+    set playerX(x) {
+        //if (x >= 0 && x < 400)
+            this.#playerX = x;
+    }
+
+    get playerY() {
+        return this.#playerY;
+    }
+
+    set playerY(y) {
+        if (y >= 0 && y <= 240)
+            this.#playerY = y;
     }
 }
 
