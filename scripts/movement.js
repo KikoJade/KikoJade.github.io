@@ -2,6 +2,7 @@ const screen = document.getElementById('gameScreen');
 const ctx = screen.getContext('2d');
 import {Enemy} from './characterScript.js';
 import {Player} from './characterScript.js';
+const url = new URL(window.location);
 
 // Tree generation
 let treeId = 0;
@@ -58,8 +59,10 @@ op3.img = enemyMaker();
 const enemyArray = [op1, op2, op3];
 
 // Player generation
-const player = new Player();
-// SET player role
+let name = url.searchParams.get("playerName");
+let role = url.searchParams.get("roleOption");
+const player = new Player(name, role);
+document.getElementById('nameSpot').innerText = name;
 player.img = new Image();
 player.img.src = '../images/Untitled21_20250218212022.png';
 player.playerX = 0;

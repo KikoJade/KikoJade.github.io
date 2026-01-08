@@ -14,7 +14,7 @@ export class Player {
         this.#hp= 100;
         this.#ap= 7;
         //this.#ap= playerActionPoints;
-        //this.role = role;
+        this.role = role;
     }
 
 //  Methods to be used for the player character
@@ -67,12 +67,12 @@ export class Player {
 
     set role(role) {
         const validRoles= ["fighter", "sage", "knight", "minstrel", "mystic", "witch"];
-        if (role.includes(validRoles.toLowercase())) {
-            this.#role= role;
-        }
-        // if (validRoles.includes(role.toLowerCase())) {
-        //     this.#role= role;
-        // }
+        //if (role.includes(validRoles.toLowercase())) {
+            //this.#role= role;
+        //}
+         if (validRoles.includes(role.toLowerCase())) {
+             this.#role= role;
+         }
     }
 
     get img() {
@@ -108,7 +108,7 @@ export class Enemy {
     #enemyActionPoints= 5;
     #img
 
-    constructor(type, hp,) {
+    constructor(type, hp) {
         this.type= type;
         this.#hp= hp;
     }
